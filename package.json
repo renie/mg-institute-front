@@ -4,11 +4,26 @@
   "description": "Marcelo Gusella Web School",
   "main": "index.js",
   "scripts": {
-    "build": "parcel build ./src/pages/*.html"
+    "build": "rm -rf dist; parcel build ./src/pages/*.html  ./src/pages/components/**/*.html",
+    "dev": "rm -rf dist; parcel watch ./src/pages/*.html  ./src/pages/components/**/*.html"
   },
+  "browserslist": [
+    "last 3 Chrome version"
+  ],
   "author": "Renie Siqueira",
   "license": "MIT",
   "devDependencies": {
-    "parcel-bundler": "^1.12.4"
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "autoprefixer": "^9.8.6",
+    "parcel-bundler": "^1.12.4",
+    "postcss-modules": "^3.2.2"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-regenerator": "^7.12.1",
+    "@babel/runtime": "^7.12.1",
+    "property-path": "^1.0.0"
   }
 }
