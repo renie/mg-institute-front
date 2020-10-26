@@ -1,4 +1,4 @@
-import propPath from 'property-path'
+import getPath from 'object-path-get'
 
 
 export const getVariablesRegex = (variable) => new RegExp(`\\$\\{([a-zA-Z0-9._]+)\\}`, 'g')
@@ -8,7 +8,7 @@ export const parseStringToHTML = (string) => (new DOMParser()).parseFromString(s
 export const parseVariablesToHTMLString = (variables, htmlString) => Object
         .keys(variables)
         .reduce((lastModified, prop) => lastModified
-            .replace(getVariablesRegex(prop), (_, className) => propPath.get(variables, className))
+            .replace(getVariablesRegex(prop), (_, objectPath) => getPath(variables, objectPath))
         , htmlString)
 
 export const toHTML = (componentHTMLString, variables) => (variables
@@ -16,7 +16,7 @@ export const toHTML = (componentHTMLString, variables) => (variables
         : parseStringToHTML(componentHTMLString)
 ).querySelector('body > *')
 
-export const shouldReplace = parent => parent.data?.hasOwnProperty('replace')
+export const shouldReplace = parent => parent.data && parent.data.hasOwnProperty('replace')
 
 export const addToParent = (component, parent) => parent.appendChild(component)
 

@@ -24,6 +24,6 @@
   "dependencies": {
     "@babel/plugin-transform-regenerator": "^7.12.1",
     "@babel/runtime": "^7.12.1",
-    "property-path": "^1.0.0"
+    "object-path-get": "^1.0.1"
   }
 }
