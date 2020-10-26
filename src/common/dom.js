@@ -1,12 +1,9 @@
 import propPath from 'property-path'
+
+
 export const getVariablesRegex = (variable) => new RegExp(`\\$\\{([a-zA-Z0-9._]+)\\}`, 'g')
 
-export const importHTML = async (path) => await fetch(path)
-    .then(response => response.text())
-
-export const toHTML = (componentHTMLString) => (new DOMParser())
-    .parseFromString(componentHTMLString, 'text/html')
-    .querySelector('body > *')
+export const parseStringToHTML = (string) => (new DOMParser()).parseFromString(string, 'text/html')
 
 export const parseVariablesToHTMLString = (variables, htmlString) => Object
         .keys(variables)
@@ -14,13 +11,20 @@ export const parseVariablesToHTMLString = (variables, htmlString) => Object
             .replace(getVariablesRegex(prop), (_, className) => propPath.get(variables, className))
         , htmlString)
 
-export const loadComponent = async (componentPath, variables) => {
-    const componentHTML = await importHTML(componentPath)
-    if (!variables) return toHTML(componentHTML)
+export const toHTML = (componentHTMLString, variables) => (variables
+        ? parseStringToHTML(parseVariablesToHTMLString(variables, componentHTMLString))
+        : parseStringToHTML(componentHTMLString)
+).querySelector('body > *')
 
-    return toHTML(parseVariablesToHTMLString(variables, componentHTML))
+export const shouldReplace = parent => parent.data?.hasOwnProperty('replace')
+
+export const addToParent = (component, parent) => parent.appendChild(component)
+
+export const replaceParent = (component, parent) => parent.parentNode.replaceChild(component, parent)
+
+export const insertIntoPage = (component, selector) => {
+    const parent = document.querySelector(selector)
+    return shouldReplace(parent)
+        ? replaceParent(component, parent)
+        : addToParent(component, parent)
 }
-
-export const insertIntoPage = (component, selector) => document
-    .querySelector(selector)
-    .appendChild(component)

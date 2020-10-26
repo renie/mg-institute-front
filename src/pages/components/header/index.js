@@ -1,7 +1,8 @@
-import { loadComponent, insertIntoPage } from '../../../common/dom'
+import { render as genericRender, loadComponent } from '../../../common/component'
+
 import styles from './index.css'
 
-export const getHeader = async () => await loadComponent('components/header/index.html', {styles})
 
+export const getHeader = async () => await loadComponent('header', {styles})
 
-export const render = async (selector='#header') => insertIntoPage(await getHeader(), selector)
+export const render = async (selector='#header') => genericRender(await getHeader(), selector)
