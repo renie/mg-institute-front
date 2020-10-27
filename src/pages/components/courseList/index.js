@@ -9,9 +9,9 @@ export const getItemComponent = async (item) => await loadComponent('courseList/
 
 export const renderItems = async (items) => await Promise
     .all(items
-        .map(async(item) => await getItemComponent(item)))
+        .map(async (item) => await getItemComponent(item)))
 
-export const render = async (selector='#courseList', data) => {
+export const render = async (selector = '#courseList', data) => {
     const listComponent = await getListComponent()
 
     const items = await renderItems(data)

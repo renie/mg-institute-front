@@ -18,7 +18,7 @@ export const loadComponent = async (componentName, variables) => {
 
     loadingComponents[componentName] = importHTML(buildComponentPath(componentName))
     loadedComponents[componentName] = await loadingComponents[componentName]
-    delete(loadingComponents[componentName])
+    Reflect.deleteProperty(loadingComponents, componentName)
 
     return toHTML(loadedComponents[componentName], variables)
 }

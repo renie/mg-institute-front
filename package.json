@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf dist; parcel build ./src/pages/*.html  ./src/pages/components/**/*.html",
-    "dev": "rm -rf dist; parcel watch ./src/pages/*.html  ./src/pages/components/**/*.html"
+    "dev": "rm -rf dist; parcel watch ./src/pages/*.html  ./src/pages/components/**/*.html",
+    "lint": "npx eslint ."
   },
   "browserslist": [
     "last 3 Chrome version"

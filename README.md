@@ -1,5 +1,5 @@
 # MG Institute Frontend
-
+[![Build Status](https://travis-ci.com/renie/mg-institute-front.svg?branch=main)](https://travis-ci.com/renie/mg-institute-front)
 ## Dependencies
 
 This project requires just **NodeJS (version >= 14.3)**.
