@@ -1,4 +1,4 @@
-import getPath from 'object-path-get'
+import { template } from 'dot'
 
 
 export const domFind = (selector, parent = document, multiple = false) => {
@@ -8,17 +8,9 @@ export const domFind = (selector, parent = document, multiple = false) => {
     return Reflect.apply(func, parent, [selector])
 }
 
-export const getVariablesRegex = () => /\$\{(?<variableName>[a-zA-Z0-9._]+)\}/ug
-
 export const parseStringToHTML = (string) => (new DOMParser()).parseFromString(string, 'text/html')
 
-export const parseVariablesToHTMLString = (variables, htmlString) => Object
-    .keys(variables)
-    .reduce(
-        (lastModified, prop) => lastModified
-            .replace(getVariablesRegex(prop), (_, objectPath) => getPath(variables, objectPath))
-        , htmlString
-    )
+export const parseVariablesToHTMLString = (variables, htmlString) => template(htmlString)(variables)
 
 export const toHTML = (componentHTMLString, variables) => (variables
     ? parseStringToHTML(parseVariablesToHTMLString(variables, componentHTMLString))
