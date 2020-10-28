@@ -1,5 +1,6 @@
 import { domFind } from '../../common/dom'
 import { sendPostData } from '../../common/component'
+import { isAdmin, redirectHome } from '../../common/helpers'
 import { render as renderAddVideo } from "../components/addVideo"
 
 const getItemInfo = (item) => {
@@ -32,4 +33,7 @@ const renderPage = () => {
     addButtonListeners()
 }
 
-renderPage()
+(async () => {
+    if (!(await isAdmin())) return redirectHome()
+    renderPage()
+})()
