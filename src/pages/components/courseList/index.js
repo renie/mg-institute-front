@@ -15,7 +15,7 @@ export const render = async (selector = '#courseList', data) => {
     const listComponent = await getListComponent()
 
     const items = await renderItems(data)
-    items.forEach(item => listComponent.appendChild(item))
+    items.forEach((item) => listComponent.appendChild(item))
 
     genericRender(listComponent, selector)
 }

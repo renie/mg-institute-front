@@ -14,8 +14,8 @@ const login = async () => await fetch('/api/login', {
 
 const renderPage = async () => {
     await renderHeader()
-    await renderCourseList('#courseList', await getData())
     await login()
+    await renderCourseList('#courseList', await getData())
 }
 
 renderPage()
