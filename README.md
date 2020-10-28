@@ -1,6 +1,8 @@
 # MG Institute Frontend
 [![Build Status](https://travis-ci.com/renie/mg-institute-front.svg?branch=main)](https://travis-ci.com/renie/mg-institute-front)
 [![Maintainability](https://api.codeclimate.com/v1/badges/67161fcf33c8984887f0/maintainability)](https://codeclimate.com/github/renie/mg-institute-front/maintainability)
+[![dependencies Status](https://david-dm.org/renie/mg-institute-front/status.svg)](https://david-dm.org/renie/mg-institute-front)
+[![devDependencies Status](https://david-dm.org/renie/mg-institute-front/dev-status.svg)](https://david-dm.org/renie/mg-institute-front?type=dev)
 
 ## Dependencies
 
