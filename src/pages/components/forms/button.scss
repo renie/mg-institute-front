@@ -1,0 +1,29 @@
+.btn {
+	border: none;
+	border-radius: 10px;
+	background: $redGradientLong;
+	background-size: 600% 600%;
+	background-position:100% 50%;
+	color: $white;
+	cursor: pointer;
+	font-weight: bold;
+	outline: none;
+	padding: 0.5em 1.8em;
+	text-align: center;
+	
+	@include inline-animation(0.8s, gradientOut) {
+		0%{background-position:100% 50%}
+		100%{background-position:0% 50%}
+	}
+	
+
+	&:hover,
+	&:focus,
+	&:active {
+		@include inline-animation(0.8s, gradientIn) {
+			0%{background-position:0% 50%}
+			100%{background-position:100% 50%}
+		}
+	}	
+}
+

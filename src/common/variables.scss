@@ -3,8 +3,14 @@
 $black: #333333;
 $gray: #9e9e9e;
 $red: #ea3b48;
+$darkRed: #c12f3b;
+$white: #ffffff;
+
+$redGradient: linear-gradient(90deg, $red 0%, $darkRed 100%);
+$redGradientInverted: linear-gradient(90deg, $darkRed 0%, $red 100%);
+$redGradientLong: linear-gradient(90deg, $red, darkRed, $red);
 
 $baseFontSize: 14px;
-$border-width: 1px;
+$borderWidth: 1px;
 
 $fontFamily: 'Montserrat', sans-serif;

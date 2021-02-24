@@ -4,22 +4,25 @@
   font-style: italic;
 }
 
+$tripleBorder: $borderWidth*3;
+$tripleBorderNeg: $borderWidth*3;
+
 .textbox {
 	border: none;
-	border-bottom-width: $border-width;
+	border-bottom-width: $borderWidth;
 	border-bottom-color: $red;
 	border-bottom-style: solid;
-	box-shadow: inset 0px -3px 3px -3px transparent;
+	box-shadow: inset 0px $tripleBorderNeg $tripleBorder $tripleBorderNeg transparent;
 	color: $red;
 	outline: none;
-	padding: 3px 0;
+	padding: $tripleBorder 0;
 	position: relative;
 	display: block;
 	transition: all 0.3s ease-in-out;
 
 	&:focus {
 		border-bottom-color: lighten($red, 33%);
-		box-shadow: inset 0px -3px 3px -3px #f7c5c9;
+		box-shadow: inset 0px $tripleBorderNeg $tripleBorder $tripleBorderNeg #f7c5c9;
 		color: lighten($red, 20%);
 	}
 }

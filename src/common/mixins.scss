@@ -1,0 +1,10 @@
+@mixin inline-animation($duration, $name, $count: 1) {
+	@keyframes #{$name} {
+		@content;
+	}
+
+	animation-name: $name;
+	animation-duration: $duration;
+	animation-iteration-count: $count;
+	animation-fill-mode: forwards;
+}
