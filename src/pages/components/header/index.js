@@ -1,6 +1,6 @@
 import { render as genericRender, loadComponent } from '../../../common/component'
 
-import styles from './index.css'
+import * as styles from './index.scss'
 
 
 export const getHeader = async () => await loadComponent('header', {styles})
