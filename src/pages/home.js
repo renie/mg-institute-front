@@ -9,7 +9,7 @@ const login = async () => await fetch('/api/login', {
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({"email": "", "password": ""})
+    body: JSON.stringify({"email": "test@test.com", "password": "123456"})
 })
 
 const renderPage = async () => {

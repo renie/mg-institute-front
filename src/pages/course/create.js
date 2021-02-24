@@ -1,7 +1,7 @@
 import { domFind } from '../../common/dom'
 import { sendPostData } from '../../common/component'
 import { isAdmin, redirectHome } from '../../common/helpers'
-import { render as renderAddVideo } from "../components/addVideo"
+import { render as renderAddVideo } from '../components/addVideo'
 
 const getItemInfo = (item) => {
     const [titleField, urlField] = [...domFind('input', item, true)]

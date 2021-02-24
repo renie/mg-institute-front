@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <title>Create Course</title>
+    <link rel="stylesheet" href="./create.page.scss"/>
 </head>
 <body>
     <form id="createForm">
         <label for="title">Title</label>
         <input type="text" id="title" name="title" />
         <fieldset>
-            <legend>Videos <button id="addVideoBtn">add</button></legend>
+            <legend>Videos <button id="addVideoBtn" class="button">add</button></legend>
             <ul id="addVideo"></ul>
         </fieldset>
         <button id="saveCourse">save</button>

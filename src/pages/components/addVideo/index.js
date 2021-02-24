@@ -1,7 +1,7 @@
 import { render as genericRender, loadComponent } from '../../../common/component'
 import { domFind } from '../../../common/dom'
 
-import styles from './index.css'
+import * as styles from './index.scss'
 
 
 export const getAddVideo = async (index) => await loadComponent('addVideo', {styles, index})

@@ -1,8 +1,7 @@
 import { render as genericRender, loadComponent } from '../../../common/component'
 
-import listStyles from './index.css'
-import itemStyles from './course.css'
-
+import * as listStyles from './index.scss'
+import * as itemStyles from './course.scss'
 
 export const getListComponent = async () => await loadComponent('courseList', {styles: listStyles})
 export const getItemComponent = async (item) => await loadComponent('courseList/course', {styles: itemStyles, item})

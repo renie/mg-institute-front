@@ -1,8 +1,10 @@
 {
   "modules": true,
   "plugins": {
-      "autoprefixer": {
-        "grid": true
-      }
+	"postcss-modules": {
+	  "globalModulePaths": [".*\\.page\\..*"],
+	  "generateScopedName": "_[name]__[local]__[hash:base64:5]_",
+      "hashPrefix": "prefix",
+	}
   }
 }
