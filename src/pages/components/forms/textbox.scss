@@ -1,0 +1,25 @@
+::-webkit-input-placeholder,
+::-moz-placeholder {
+  color: $gray;
+  font-style: italic;
+}
+
+.textbox {
+	border: none;
+	border-bottom-width: $border-width;
+	border-bottom-color: $red;
+	border-bottom-style: solid;
+	box-shadow: inset 0px -3px 3px -3px transparent;
+	color: $red;
+	outline: none;
+	padding: 3px 0;
+	position: relative;
+	display: block;
+	transition: all 0.3s ease-in-out;
+
+	&:focus {
+		border-bottom-color: lighten($red, 33%);
+		box-shadow: inset 0px -3px 3px -3px #f7c5c9;
+		color: lighten($red, 20%);
+	}
+}

@@ -1,7 +1,8 @@
-<li>
-    <label for="newVideo__title_{{=it.index}}" class="{{=it.styles.label}}">Video title</label>
-    <input type="text" id="newVideo__title_{{=it.index}}" name="newVideo__title_{{=it.index}}" />
-
-    <label for="newVideo__url_{{=it.index}}">Video URL</label>
-    <input type="text" id="newVideo__url_{{=it.index}}" name="newVideo__url_{{=it.index}}" />
+<li class="{{=it.styles.item}}">
+	<div class="control">
+		<input class="{{=it.form.textbox}}" type="text" id="newVideo__title_{{=it.index}}" name="newVideo__title_{{=it.index}}" placeholder="Vídeo title" />
+	</div>
+	<div class="control">
+		<input class="{{=it.form.textbox}}" type="text" id="newVideo__title_{{=it.index}}" name="newVideo__title_{{=it.index}}" placeholder="Vídeo URL" />
+	</div>
 </li>
