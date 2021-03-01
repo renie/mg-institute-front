@@ -1,6 +1,29 @@
 @import "~bulma/sass/elements/container";
 @import "~bulma/sass/grid/columns";
 @import "~bulma/sass/helpers/typography";
+@import "~bulma/sass/helpers/spacing";
+@import "~bulma/sass/helpers/flexbox";
 
 @import "./reset.scss";
-@import "./backgrounds.scss"
+@import "./backgrounds.scss";
+
+.logo {
+	background: transparent url(../pages/img/logo.svg) no-repeat left center;
+	background-size: contain;
+	height: 60px;
+	text-indent: -999em;
+}
+
+a, a:visited {
+	color: $red;
+	text-decoration: none;
+}
+
+a:hover, a:focus {
+	text-decoration: underline;
+}
+
+.header-link {
+	font-size: 1.3em;
+	font-weight: bold;
+}
