@@ -4,8 +4,8 @@
   "description": "Marcelo Gusella Web School",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist; npx parcel build ./src/pages/*.html  ./src/pages/components/**/*.html ./src/pages/course/*.html",
-    "dev": "rm -rf dist; npx parcel watch ./src/pages/*.html  ./src/pages/components/**/*.html ./src/pages/course/*.html",
+    "build": "rm -rf dist; npx parcel build ./src/pages/*.html  ./src/pages/components/**/*.html ./src/pages/course/*.html; cp -r ./src/common/imgs ./dist/imgs",
+    "dev": "rm -rf dist; npx parcel watch ./src/pages/*.html  ./src/pages/components/**/*.html ./src/pages/course/*.html; cp -r ./src/common/imgs ./dist/imgs",
     "lint": "npx eslint ."
   },
   "browserslist": [
