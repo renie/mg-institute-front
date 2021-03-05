@@ -11,7 +11,7 @@
 	padding: 0.5em 1.8em;
 	text-align: center;
 	
-	@include inline-animation(0.8s, gradientOut) {
+	@include inline-animation(0.5s, gradientOut) {
 		0%{background-position:100% 50%}
 		100%{background-position:0% 50%}
 	}
@@ -20,7 +20,7 @@
 	&:hover,
 	&:focus,
 	&:active {
-		@include inline-animation(0.8s, gradientIn) {
+		@include inline-animation(0.5s, gradientIn) {
 			0%{background-position:0% 50%}
 			100%{background-position:100% 50%}
 		}

@@ -1,0 +1,75 @@
+$box-radius: 50px;
+
+@import "~bulma/sass/utilities/controls";
+@import "~bulma/sass/utilities/extends";
+@import "~bulma/sass/elements/box";
+
+@import "../common/default.scss";
+@import "./components/forms/textbox.scss";
+@import "./components/forms/button.scss";
+
+.pic_bg {
+	background-image: 
+		linear-gradient(50deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.8) 75%),
+		url(./img/headless_dog.webp);
+	background-repeat: no-repeat;
+	background-position: 50% top;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -999;
+}
+
+.main-content {
+	height: 590px;
+	margin: 120px 0 !important;
+}
+
+h2, h4 {
+	color: $red;
+}
+
+h2 {
+	margin-top: 1.3em;
+	font-size: 2.7em;
+	font-weight: bold;
+}
+
+h4 {
+	font-size: 1.1em;
+	margin-top: 1em;
+}
+
+.box {
+	height: 100%;
+	padding: 5em 1em;
+}
+
+.main-content .box > .column {
+	padding: 0 2em !important;
+}
+
+.box section:first-child {
+	border-right: 1px solid $red;
+}
+
+.box h3 {
+	color: $red;
+	font-size: 1.7em;
+	font-weight: bold;
+}
+
+.textbox {
+	width: 100%;
+}
+
+.textbox, .btn {
+	margin: 3em auto;
+}
+
+.btn {
+	display: block;
+}

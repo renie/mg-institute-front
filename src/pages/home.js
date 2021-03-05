@@ -1,4 +1,3 @@
-import { render as renderHeader } from './components/header'
 import { render as renderCourseList } from './components/courseList'
 import { fetchDataAPI } from '../common/helpers'
 
@@ -13,7 +12,6 @@ const login = async () => await fetch('/api/login', {
 })
 
 const renderPage = async () => {
-    await renderHeader()
     await login()
     await renderCourseList('#courseList', await getData())
 }

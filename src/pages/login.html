@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Login</title>
+	<link rel="stylesheet" href="./login.page.scss"/>
+</head>
+<body>
+	<div class="container main pt-5">
+		<include src="./components/partials/header.html"></include>
+
+		<section class="columns main-content">
+			<div class="column is-4">
+				<h2>Seja bem vindo ao Instituto Marcelo Gusella</h2>
+				<h4>Preencha os dados ao lado para acessar sua conta e entrar em nossa plataforma!</h4>
+			</div>
+
+			<div class="column is-7 is-offset-1">
+				<section class="is-gapless box columns">
+					<section class="column is-half">
+						<h3>Criar conta</h3>
+						<input type="text" id="name" name="name" class="textbox" placeholder="Nome" />
+						<input type="text" id="surname" name="surname" class="textbox" placeholder="Sobrenome" />
+						<input type="text" id="emailCreate" name="emailCreate" class="textbox" placeholder="E-mail" />
+						<input type="text" id="passwordCreate" name="passwordCreate" class="textbox" placeholder="Senha" />
+						<button id="saveCourse" class="btn is-align-self-center">Inscreva-se</button>
+					</section>
+
+					<section class="column is-half">
+						<h3>Fazer login</h3>
+						<input type="text" id="emailLogin" name="emailLogin" class="textbox" placeholder="E-mail" />
+						<input type="text" id="passwordLogin" name="passwordLogin" class="textbox" placeholder="Senha" />
+						<button id="saveCourse" class="btn is-align-self-center">Entrar</button>
+					</section>
+				</section>
+			</div>
+		</section>
+
+		<include src="./components/partials/footer.html"></include>
+	</div>
+
+	<include src="./components/partials/pattern_bg.html"></include>
+	<div class="pic_bg"></div>
+</body>
+</html>
