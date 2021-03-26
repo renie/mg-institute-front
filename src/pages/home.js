@@ -1,18 +1,29 @@
 import { render as renderCourseList } from './components/courseList'
-import { fetchDataAPI } from '../common/helpers'
+import { fetchDataAPI, Auth, Redirects } from '../common/helpers/'
+
+
+const logoutBtn = document.querySelector('#logout')
 
 const getData = async () => await fetchDataAPI('course')
 
-const login = async () => await fetch('/api/login', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({"email": "test@test.com", "password": "123456"})
-})
+const logOut = async (evt) => {
+    evt.preventDefault()
+
+    try {
+        await Auth.doLogout()
+    } finally {
+        Redirects.toHome()
+    }
+}
+
+const setListeners = () => {
+    logoutBtn.addEventListener('click', logOut)
+}
 
 const renderPage = async () => {
-    await login()
+    await Auth.checkLogin()
+
+    setListeners()
     await renderCourseList('#courseList', await getData())
 }
 

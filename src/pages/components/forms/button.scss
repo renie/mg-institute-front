@@ -10,6 +10,7 @@
 	outline: none;
 	padding: 0.5em 1.8em;
 	text-align: center;
+	position: relative;
 	
 	@include inline-animation(0.5s, gradientOut) {
 		0%{background-position:100% 50%}
@@ -24,6 +25,39 @@
 			0%{background-position:0% 50%}
 			100%{background-position:100% 50%}
 		}
-	}	
+	}
+
+	&.is-loading {
+		color: transparent;
+	}
+
+	&.is-loading::after {
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		position: absolute;
+
+		border: 2px solid $white;
+		border-right-color: transparent;
+		border-top-color: transparent;
+		border-radius: 50%;
+		content: "";
+		display: block;
+		height: 1em;
+		width: 1em;
+		color: transparent !important;
+		pointer-events: none;
+		
+		@include inline-animation(0.5s, spin, infinite) {
+			0%{transform: translate(-50%, -50%) rotate(0deg)}
+			100%{transform: translate(-50%, -50%) rotate(360deg)}
+		}
+	}
+
+
+	&[disabled] {
+		pointer-events: none;
+		opacity: 0.5;
+	}
 }
 

@@ -22,15 +22,18 @@
 						<input type="text" id="name" name="name" class="textbox" placeholder="Nome" />
 						<input type="text" id="surname" name="surname" class="textbox" placeholder="Sobrenome" />
 						<input type="text" id="emailCreate" name="emailCreate" class="textbox" placeholder="E-mail" />
-						<input type="text" id="passwordCreate" name="passwordCreate" class="textbox" placeholder="Senha" />
-						<button id="saveCourse" class="btn is-align-self-center">Inscreva-se</button>
+						<input type="password" id="passwordCreate" name="passwordCreate" class="textbox" placeholder="Senha" />
+						<button id="signup" class="btn is-align-self-center">Inscreva-se</button>
 					</section>
 
 					<section class="column is-half">
 						<h3>Fazer login</h3>
+						<div id="loginErrorMessage" class="notification is-danger is-light is-hidden">
+							E-mail e/ou senha incorreto(s). Tente novamente.
+						</div>
 						<input type="text" id="emailLogin" name="emailLogin" class="textbox" placeholder="E-mail" />
-						<input type="text" id="passwordLogin" name="passwordLogin" class="textbox" placeholder="Senha" />
-						<button id="saveCourse" class="btn is-align-self-center">Entrar</button>
+						<input type="password" id="passwordLogin" name="passwordLogin" class="textbox" placeholder="Senha" />
+						<button id="signin" class="btn is-align-self-center">Entrar</button>
 					</section>
 				</section>
 			</div>
@@ -41,5 +44,6 @@
 
 	<include src="./components/partials/pattern_bg.html"></include>
 	<div class="pic_bg"></div>
+    <script src="login.js"></script>
 </body>
 </html>

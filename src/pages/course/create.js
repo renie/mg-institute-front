@@ -1,6 +1,6 @@
 import { domFind } from '../../common/dom'
 import { sendPostData } from '../../common/component'
-import { isAdmin, redirectHome } from '../../common/helpers'
+import { Auth, Redirects } from '../../common/helpers/'
 import { render as renderAddVideo } from '../components/addVideo'
 
 const getItemInfo = (item) => {
@@ -34,6 +34,6 @@ const renderPage = () => {
 }
 
 (async () => {
-    if (!(await isAdmin())) return redirectHome()
+    if (!(await Auth.isAdmin())) return Redirects.toHome()
     renderPage()
 })()
