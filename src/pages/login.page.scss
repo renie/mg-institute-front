@@ -3,6 +3,7 @@ $box-radius: 50px;
 @import "~bulma/sass/utilities/controls";
 @import "~bulma/sass/utilities/extends";
 @import "~bulma/sass/elements/box";
+@import "~bulma/sass/elements/notification";
 
 @import "../common/default.scss";
 @import "./components/forms/textbox.scss";
@@ -72,4 +73,8 @@ h4 {
 
 .btn {
 	display: block;
+}
+
+.notification {
+	margin-top: 1.5rem;
 }
