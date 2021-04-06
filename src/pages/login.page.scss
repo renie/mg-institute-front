@@ -1,4 +1,6 @@
 $box-radius: 50px;
+$imgpath: "./img";
+
 
 @import "~bulma/sass/utilities/controls";
 @import "~bulma/sass/utilities/extends";
@@ -10,7 +12,7 @@ $box-radius: 50px;
 @import "./components/forms/button.scss";
 
 .pic_bg {
-	background-image: 
+	background-image:
 		linear-gradient(50deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.8) 75%),
 		url(./img/headless_dog.webp);
 	background-repeat: no-repeat;

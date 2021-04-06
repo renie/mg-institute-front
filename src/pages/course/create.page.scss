@@ -1,2 +1,40 @@
-@import "../../common/reset.scss";
+$imgpath: "../img";
+$box-radius: 50px;
+
+@import "~bulma/sass/utilities/controls";
+@import "~bulma/sass/utilities/extends";
+@import "~bulma/sass/elements/box";
+@import "~bulma/sass/elements/notification";
+
+@import "../../common/default.scss";
 @import "../components/forms";
+
+#title {
+    width: 900px;
+    max-width: 100%;
+}
+
+.box h3 {
+    color: $red;
+    font-size: 1.7em;
+    font-weight: bold;
+}
+
+.box {
+    height: 100%;
+    padding: 5em 3em;
+    margin: 3em 0 !important;
+}
+
+#createForm div > div:first-child,
+#createForm div > div:first-child > input {
+    margin-top: 0 !important;
+}
+
+#createForm * {
+    margin: 1em 0;
+}
+
+#addVideo {
+    border-top: $borderWidth dotted $gray;
+}

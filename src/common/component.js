@@ -6,16 +6,20 @@ const loadingComponents = {}
 
 export const buildAPIPath = (componentName) => `/api/${componentName}`
 
-export const sendPostData = async (component, body) => await fetch(
+export const request = async (component, body, method = 'GET') => await fetch(
     buildAPIPath(component),
     {
-        method: 'POST',
+        method,
         headers: {
             'Content-Type': 'application/json'
         }, body
     }
 )
     .then((response) => response.text())
+
+export const sendPostData = async (component, body) => await request(component, body, 'POST')
+
+export const getData = async (component, body) => await request(component, body, 'GET')
 
 export const importHTML = async (path) => await fetch(path)
     .then((response) => response.text())

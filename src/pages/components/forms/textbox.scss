@@ -25,4 +25,9 @@ $tripleBorderNeg: $borderWidth*-3;
 		box-shadow: inset 0px $tripleBorderNeg $tripleBorder $tripleBorderNeg #f7c5c9;
 		color: lighten($red, 20%);
 	}
+
+	&.error {
+		background: lighten($red, 40%);
+
+	}
 }

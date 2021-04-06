@@ -1,3 +1,75 @@
-.item { 
+@import "../../../common/variables.scss";
+
+.item {
+    border-bottom: $borderWidth dotted $gray;
+    display: block;
 	list-style: none;
+    margin-bottom: 0.5em;
+    position: relative;
+    width: 100%;
+
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    & img {
+        border: $borderWidth solid $gray;
+        border-radius: 5px;
+        float: left;
+        margin-right: 1em !important;
+        padding: 3px;
+        height: 150px;
+        width: 200px;
+    }
+
+    & textarea, & input[type="text"] {
+        width: 100%;
+    }
+
+    & textarea {
+        height: 80px;
+    }
+
+    & .fields {
+        float: left;
+        width: calc(100% - 200px - 1em);
+
+        & input[type="text"], & button, & textarea {
+            margin-bottom: 0.5em;
+        }
+    }
+
+    input[type="file"] {
+        display:none;
+    }
+
+    & .closeBtn {
+        background: none;
+        border: $borderWidth solid $red;
+        border-radius: 50%;
+        color: $red;
+        float: right;
+        margin: 0 !important;
+        position: absolute;
+        top: 0;
+        right: 0.1em;
+        width: 20px;
+        height: 20px;
+        font-size: 1.8em;
+        line-height: 0.75em;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            background: $red;
+            color: $white;
+        }
+    }
+
+    & p {
+        color: $red;
+    }
 }
+

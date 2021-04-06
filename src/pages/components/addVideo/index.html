@@ -1,8 +1,21 @@
 <li class="{{=it.styles.item}}">
-	<div class="control">
-		<input class="{{=it.form.textbox}}" type="text" id="newVideo__title_{{=it.index}}" name="newVideo__title_{{=it.index}}" placeholder="Vídeo title" />
-	</div>
-	<div class="control">
-		<input class="{{=it.form.textbox}}" type="text" id="newVideo__title_{{=it.index}}" name="newVideo__title_{{=it.index}}" placeholder="Vídeo URL" />
-	</div>
+    <img src="#" alt="" />
+    <div class="{{=it.styles.fields}}">
+        <div class="control">
+            <input class="{{=it.form.textbox}}" type="text" id="newVideo__title_{{=it.index}}" name="newVideo__title_{{=it.index}}" placeholder="Título do Vídeo"/>
+        </div>
+        <div class="control">
+            <input class="{{=it.form.textbox}} videoUrl" type="text" id="newVideo__title_{{=it.index}}" name="newVideo__title_{{=it.index}}" placeholder="Link ou id do Vídeo no VIMEO"/>
+        </div>
+        <div class="control">
+            <textarea class="{{=it.form.textbox}}" id="newVideo__description_{{=it.index}}" name="newVideo__description_{{=it.index}}" placeholder="Descrição do Vídeo"></textarea>
+        </div>
+        <div class="control">
+            <input type="file" id="newVideo__document_{{=it.index}}" name="newVideo__document_{{=it.index}}" class="document" />
+            <button class="{{=it.form.btn}} addTranscription">Adicionar Transcrição</button>
+            <p></p>
+        </div>
+    </div>
+
+    <button title="Excluir Vídeo" class="{{=it.styles.closeBtn}} delete">×</button>
 </li>

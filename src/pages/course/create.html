@@ -6,12 +6,22 @@
     <link rel="stylesheet" href="./create.page.scss"/>
 </head>
 <body>
-    <form id="createForm">
-        <input type="text" id="title" name="title" class="textbox" placeholder="Título" />
-        <button id="addVideoBtn" class="btn">Adicionar aula</button>
-        <ul id="addVideo"></ul>
-        <button id="saveCourse" class="btn">save</button>
-    </form>
+    <div class="container main pt-5">
+        <include src="./components/partials/header.html"></include>
+
+        <section class="box main-content">
+            <h3>Criar Curso</h3>
+            <form id="createForm">
+                <input type="text" id="title" name="title" class="textbox" placeholder="Título" />
+                <button id="addVideoBtn" class="btn">Adicionar aula</button>
+                <ul id="addVideo"></ul>
+                <button id="saveCourse" class="btn">Salvar</button>
+            </form>
+        </section>
+
+        <include src="./components/partials/footer.html"></include>
+    </div>
+
     <script src="./create.js"></script>
 </body>
 </html>

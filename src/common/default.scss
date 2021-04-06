@@ -9,7 +9,7 @@
 @import "./backgrounds.scss";
 
 .logo {
-	background: transparent url(../pages/img/logo.svg) no-repeat left center;
+	background: transparent url(#{$imgpath}/logo.svg) no-repeat left center;
 	background-size: contain;
 	height: 60px;
 	text-indent: -999em;
