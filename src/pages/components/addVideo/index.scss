@@ -1,10 +1,12 @@
 @import "../../../common/variables.scss";
+@import "../../../common/mixins.scss";
 
 .item {
     border-bottom: $borderWidth dotted $gray;
     display: block;
 	list-style: none;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.5em !important;
+    margin-top: 2em !important;
     position: relative;
     width: 100%;
 
@@ -14,14 +16,41 @@
         clear: both;
     }
 
+    & .image {
+        display: block;
+        float: left;
+    }
+
     & img {
         border: $borderWidth solid $gray;
         border-radius: 5px;
-        float: left;
         margin-right: 1em !important;
         padding: 3px;
         height: 150px;
         width: 200px;
+    }
+
+    & .carregando::after {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+
+        border: 2px solid $white;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        border-radius: 50%;
+        content: "";
+        display: block;
+        height: 1em;
+        width: 1em;
+        color: transparent !important;
+        pointer-events: none;
+
+        @include inline-animation(0.5s, spin, infinite) {
+            0%{transform: translate(-50%, -50%) rotate(0deg)}
+            100%{transform: translate(-50%, -50%) rotate(360deg)}
+        }
     }
 
     & textarea, & input[type="text"] {
@@ -34,7 +63,7 @@
 
     & .fields {
         float: left;
-        width: calc(100% - 200px - 1em);
+        width: calc(100% - 225px - 1em);
 
         & input[type="text"], & button, & textarea {
             margin-bottom: 0.5em;
@@ -53,12 +82,12 @@
         float: right;
         margin: 0 !important;
         position: absolute;
-        top: 0;
+        top: -0.5em;
         right: 0.1em;
         width: 20px;
         height: 20px;
         font-size: 1.8em;
-        line-height: 0.75em;
+        line-height: 0.7em;
         cursor: pointer;
         transition: all 0.2s ease-in-out;
 

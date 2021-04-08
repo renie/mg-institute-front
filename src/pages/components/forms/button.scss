@@ -11,12 +11,12 @@
 	padding: 0.5em 1.8em;
 	text-align: center;
 	position: relative;
-	
+
 	@include inline-animation(0.5s, gradientOut) {
 		0%{background-position:100% 50%}
 		100%{background-position:0% 50%}
 	}
-	
+
 
 	&:hover,
 	&:focus,
@@ -27,7 +27,7 @@
 		}
 	}
 
-	&.is-loading {
+	&.isLoading {
 		color: transparent;
 	}
 
@@ -47,7 +47,7 @@
 		width: 1em;
 		color: transparent !important;
 		pointer-events: none;
-		
+
 		@include inline-animation(0.5s, spin, infinite) {
 			0%{transform: translate(-50%, -50%) rotate(0deg)}
 			100%{transform: translate(-50%, -50%) rotate(360deg)}

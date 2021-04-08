@@ -28,6 +28,6 @@ $tripleBorderNeg: $borderWidth*-3;
 
 	&.error {
 		background: lighten($red, 40%);
-
+		color: $red;
 	}
 }

@@ -1,29 +1,13 @@
 import { domFind } from '../../common/dom'
-import { sendPostData, getData } from '../../common/component'
-import { Auth, Redirects } from '../../common/helpers/'
+import { getData } from '../../common/component'
 import { render as renderAddVideo } from '../components/addVideo'
+import { Auth, Redirects, Validation } from '../../common/helpers/'
 
-import * as form from '../components/forms/index.scss'
 
-const getItemInfo = (item) => {
-    const [titleField, urlField] = [...domFind('input', item, true)]
+const addVideoButton = domFind('#addVideoBtn')
+const saveCourse = domFind('#saveCourse')
+const addVideo = domFind('#addVideo')
 
-    return {
-        title: titleField.value,
-        url: urlField.value
-    }
-}
-
-const getVideosInfo = () => [...domFind('#addVideo li', document, true)].map(getItemInfo)
-
-const getFormData = () => ({
-    title: domFind('#title').value,
-    videos: getVideosInfo()
-})
-
-const save = () => sendPostData('course', JSON.stringify(getFormData()))
-
-const disableFormDefaultSubmit = () => domFind('#createForm').addEventListener('submit', (e) => e.preventDefault())
 
 const getVideoIdFromLink = link => {
     const regexIdFromLink = /(?<id>[0-9]+)$/g
@@ -33,74 +17,151 @@ const getVideoIdFromLink = link => {
     return match.groups.id
 }
 
-const loadThumb = async (id, imgTag, target) => {
+const getItemInfo = (item) => {
+    const [
+        titleField,
+        urlField,
+        descriptionField,
+        documentField
+    ] = [...domFind('input, textarea', item, true)]
+
+    return {
+        title: Validation.getRequiredValue(titleField),
+        url: getVideoIdFromLink(Validation.getRequiredValue(urlField)),
+        description: Validation.getRequiredValue(descriptionField),
+        document: documentField.files[0]
+    }
+}
+
+const getVideosInfo = () => [...domFind('#addVideo li', document, true)].map(getItemInfo)
+
+const getFormData = () => ({
+    title: Validation.getRequiredValue(domFind('#title')),
+    videos: getVideosInfo()
+})
+
+const populateVideosOnFormData = (videoList, formData) => {
+    for (const videoRef in videoList) {
+        if (!videoList.hasOwnProperty(videoRef)) continue
+
+
+        const { document: videoFile, ...videoData } = videoList[videoRef]
+
+        formData.append('videos[]', JSON.stringify(videoData))
+        formData.append('videos[]', videoFile)
+    }
+
+    return formData
+}
+
+const createFormDataObject = (data) => {
+    const formData = new FormData()
+
+    for (const prop in data) {
+        if (!data.hasOwnProperty(prop)) continue
+
+        if (prop === 'videos') populateVideosOnFormData(data[prop], formData)
+        else formData.append(prop, data[prop])
+    }
+
+    return formData
+}
+
+const save = event => {
+    event.preventDefault()
+
+    try {
+        const data = createFormDataObject(getFormData())
+        return data
+    } catch (e) {
+        if (e.message === 'RequiredField') {
+            const { field } = e.meta
+            Validation.setFieldWithError(field, 'Esse campo é OBRIGATÓRIO!!!')
+        }
+    }
+}
+
+const loadThumb = async (id, imgTag, field) => {
     try {
         const src = await getData(`video/vimeothumbof/${id}`)
 
-        if (!src) {
-            target.value = ''
-            target.placeholder = `ID ${id} não foi encontrado no Vimeo!!!`
-            target.classList.add(form.error)
-
-            return false
-        }
-
-        imgTag.src = src
+        if (!src) Validation.setFieldWithError(field, `ID ${id} não foi encontrado no Vimeo!!!`)
+        else imgTag.src = src
     } catch (e) {
-        alert('Esse video nao existe no Vimeo')
+        Validation.setFieldWithError(field, `Ocorreu um problema ao carregar o video ${id} no Vimeo!!!`)
     }
 }
 
-const triggerLoadThumb = ({ target }) => {
-    if (target.nodeName !== 'INPUT') return false
-    if (!target.classList.contains('videoUrl')) return false
-    if (!target.value.trim()) return false
+const triggerLoadThumb = ({ target: blurredElement }) => {
+    if (!Validation.validateField(blurredElement, {
+        nodeName: 'INPUT',
+        classList: 'videoUrl',
+        value: true
+    })) return false
 
-    target.placeholder = 'Link ou id do Vídeo no VIMEO'
-    target.classList.remove(form.error)
+    const inputElement = blurredElement
+    const inputParentList = inputElement.parentNode.parentNode.parentNode
+    const imageElement = inputParentList.querySelector('img')
 
-    const id = getVideoIdFromLink(target.value)
-    if (!id) {
-        target.value = ''
-        target.placeholder = 'Link/ID inválido'
-        target.classList.add(form.error)
+    Validation.setFieldWithoutError(inputElement)
 
-        return false
-    }
+    const id = getVideoIdFromLink(inputElement.value)
 
-    loadThumb(id, target.parentNode.parentNode.parentNode.querySelector('img'), target)
+    if (!id) Validation.setFieldWithError(inputElement, 'Link/ID inválido')
+
+    else loadThumb(id, imageElement, inputElement)
 }
 
-const triggerInputFile = ({ target }) => {
-    if (target.nodeName !== 'BUTTON') return false
-    if (!target.classList.contains('addTranscription')) return false
+const triggerInputFile = (event) => {
+    const { target: clickedElement } = event
 
-    target.parentNode.querySelector('input').click()
+    if (!Validation.validateField(clickedElement, {
+        nodeName: 'BUTTON',
+        classList: 'addTranscription'
+    })) return false
+
+    event.preventDefault()
+
+    clickedElement.parentNode.querySelector('input').click()
 }
 
-const deleteItem = ({ target }) => {
-    if (target.nodeName !== 'BUTTON') return false
-    if (!target.classList.contains('delete')) return false
+const triggerFileAdded = ({ target: changedElement }) => {
+    if (!Validation.validateField(changedElement, {
+        nodeName: 'INPUT',
+        classList: 'document'
+    })) return false
 
-    const item = target.parentNode
+
+    changedElement.parentNode.querySelector('p').innerText = `Arquivo escolhido: ${changedElement.files[0].name}`
+}
+
+const deleteItem = (event) => {
+    const { target: clickedElement } = event
+
+    if (!Validation.validateField(clickedElement, {
+        nodeName: 'BUTTON',
+        classList: 'delete'
+    })) return false
+
+    event.preventDefault()
+
+    const item = clickedElement.parentNode
     domFind('#addVideo').removeChild(item)
 }
 
-const triggerFileAdded = ({ target }) => {
-    if (target.nodeName !== 'INPUT') return false
-    if (!target.classList.contains('document')) return false
-
-    target.parentNode.querySelector('p').innerText = `Arquivo escolhido: ${target.files[0].name}`
-}
-
 const addListeners = () => {
-    domFind('#addVideoBtn').addEventListener('click', () => renderAddVideo())
-    domFind('#saveCourse').addEventListener('click', () => save())
-    domFind('#addVideo').addEventListener('blur', (e) => triggerLoadThumb(e), true)
-    domFind('#addVideo').addEventListener('click', (e) => triggerInputFile(e))
-    domFind('#addVideo').addEventListener('change', (e) => triggerFileAdded(e))
-    domFind('#addVideo').addEventListener('click', (e) => deleteItem(e))
+    addVideoButton.addEventListener('click', e => {
+        e.preventDefault()
+        renderAddVideo()
+    })
+    saveCourse.addEventListener('click', e => save(e))
+    addVideo.addEventListener('blur', e => triggerLoadThumb(e), true)
+    addVideo.addEventListener('click', e => triggerInputFile(e))
+    addVideo.addEventListener('change', e => triggerFileAdded(e))
+    addVideo.addEventListener('click', e => deleteItem(e))
 }
+
+const disableFormDefaultSubmit = () => domFind('#createForm').addEventListener('submit', (e) => e.preventDefault())
 
 const renderPage = () => {
     disableFormDefaultSubmit()

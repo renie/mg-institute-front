@@ -1,5 +1,6 @@
 import * as Auth from './auth'
 import * as Redirects from './redirects'
+import * as Validation from './validations'
 
 
 const fetchDataAPI = async (url) => await fetch(`/api/${url}`)
@@ -8,5 +9,6 @@ const fetchDataAPI = async (url) => await fetch(`/api/${url}`)
 export {
     Auth,
     Redirects,
-    fetchDataAPI
+    fetchDataAPI,
+    Validation
 }

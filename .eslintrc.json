@@ -133,7 +133,7 @@
         "no-confusing-arrow": ["error", {"allowParens": true}],
         "no-console": "error",
         "no-constructor-return": "error",
-        "no-continue": "error",
+        "no-continue": "warn",
         "no-div-regex": "error",
         "no-duplicate-imports": "error",
         "no-else-return": "error",
